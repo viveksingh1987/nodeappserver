@@ -4,6 +4,7 @@
   "description": "Node Application Server hosting Rest API and Authorisation and integration with mongodb",
   "main": "index.js",
   "scripts": {
+    "dev": "set NODE_ENV=development && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
