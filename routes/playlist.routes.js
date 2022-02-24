@@ -8,8 +8,28 @@ playlistRouter.use((req, res, next) => {
   next();
 });
 
-playlistRouter.get("/about", (req, res) => {
-  res.send("About playlist");
+// Find Paylist with Id
+playlistRouter.get("/{id}", (req, res) => {
+  console.log(`Finding playlist details with id: ${id}`);
+  res.send("Find Playlist");
+});
+
+// Add user
+playlistRouter.post("/add", (req, res) => {
+  console.log(`Add playlist: ${req.body}`);
+  res.send("Add Playlist");
+});
+
+// Update user
+playlistRouter.put("/update", (req, res) => {
+  console.log(`Update playlist: ${req.body}`);
+  res.send("Update playlist");
+});
+
+// Delete user
+playlistRouter.delete("/${id}", (req, res) => {
+  console.log(`Delete playlist: ${req.body}`);
+  res.send("Delete Playlist");
 });
 
 module.exports = playlistRouter;
