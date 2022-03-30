@@ -6,7 +6,7 @@ const config = {
     dbName: "watchlist",
     dbPort: 2701,
     dbURL:
-      "mongodb+srv://admin:admin@cluster0.zlamx.mongodb.net/taskportal?retryWrites=true&w=majority",
+      "mongodb://localhost:27017/local",
   },
 };
 
