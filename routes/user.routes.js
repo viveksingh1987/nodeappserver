@@ -1,10 +1,9 @@
 const express = require("express");
+const userRouter = express.Router();
 
 // Import Internal dependency
 const { loginUser, registerUser } = require("../controller/user.controller");
 const { verifyToken } = require("../common/utils");
-
-const userRouter = express.Router();
 
 // middleware that is specific to this router
 userRouter.use((req, res, next) => {
