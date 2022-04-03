@@ -14,8 +14,9 @@ userRouter.use((req, res, next) => {
 
 
 // login user
-userRouter.post("/login", (req, res) => {  
-  if(!req.body || !req.body.userName || !req.body.password) {
+userRouter.post("/login", (req, res) => { 
+  
+  if(req.body === undefined || !req.body.userName || !req.body.password) {
       console.log('User Router | Bad Request | UserName or Password is empty');
       return res.status(400).send("Missing Login Details");
   }
