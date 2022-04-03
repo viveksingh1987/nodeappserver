@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/user', userRouter);
 
-describe('Test User Routes', ()=>{
+describe('Test User Login Routes', ()=>{
     
     it('Test user login failed with bad request', async () => {
         await request(app)
@@ -35,6 +35,30 @@ describe('Test User Routes', ()=>{
         expect(res.statusCode).toBe(201);
     });
 
-  
 
-})
+});
+
+
+describe('Test User Registration Routes', ()=> {
+
+    it('Test user registration success', async() => {
+        await request(app)
+        .post('/user/add')
+        .send({})
+        .then(res => {
+            expect(res.statusCode).toBe(400);    
+        }); 
+    });
+
+    it('Test user registration failure with error code 404', () => {
+
+    });
+
+    it('Test user registration failure with error code 401', () => {
+
+    });
+
+    it('Test user registration failure with error code 500', ()=>{
+
+    });
+});
