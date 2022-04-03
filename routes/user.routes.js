@@ -1,10 +1,9 @@
 const express = require("express");
+const userRouter = express.Router();
 
 // Import Internal dependency
 const { loginUser, registerUser } = require("../controller/user.controller");
 const { verifyToken } = require("../common/utils");
-
-const userRouter = express.Router();
 
 // middleware that is specific to this router
 userRouter.use((req, res, next) => {
@@ -12,39 +11,21 @@ userRouter.use((req, res, next) => {
   next();
 });
 
+/**
+ * Login User
+ */
+userRouter.post("/login", loginUser);
 
-// login user
-userRouter.post("/login", (req, res) => { 
-  
-  if(req.body === undefined || !req.body.userName || !req.body.password) {
-      console.log('User Router | Bad Request | UserName or Password is empty');
-      return res.status(400).send("Missing Login Details");
-  }
-  loginUser(req,res);  
-});
-
-// Add user
-userRouter.post("/add", (req, res) => {
-  const input = JSON.stringify(req.body);
-  console.log(`Add users: ${input}`);
-  if(!req.body.user){
-    console.log('User Router | Bad Request | User details missing');
-    return res.status(400).send("Missing User Details");
-  } 
-  registerUser(req,res);
-});
-
-
+/**
+ * Register User
+ */
+userRouter.post("/add", registerUser);
 
 // Find user with Id
 userRouter.get(`/{id}`, verifyToken, (req, res) => {
   console.log(`Finding User details with id: ${id}`);
   res.send("Find users");
 });
-
-
-
-
 
 // Update user
 userRouter.put("/update", (req, res) => {
@@ -53,7 +34,7 @@ userRouter.put("/update", (req, res) => {
 });
 
 // Delete user
-userRouter.delete("/${id}",  (req, res) => {
+userRouter.delete("/${id}", (req, res) => {
   console.log(`Delete users: ${req.body}`);
   res.send("About users");
 });
