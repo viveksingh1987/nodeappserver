@@ -2,16 +2,21 @@ var mongoosedb = require("../db/mongoosedb");
 var UserModelSchema = require("../db/schema/user.model");
 
 /**
- * 
- * @param {*} userId 
- * @returns 
+ * Service to find user in Database
+ * @param {*} userId
+ * @returns
  */
 const findUser = async (userId) => {
   return await UserModelSchema.find({ userId: userId });
 };
 
-const addUser = async (userId) => {
-  return await UserModelSchema.save({ userId: userId });
+/**
+ * Service to add user in Database
+ * @param {*} user
+ * @returns
+ */
+const addUser = async (user) => {
+  return await UserModelSchema.create(user);
 };
 
-module.exports = { findUser };
+module.exports = { findUser, addUser };

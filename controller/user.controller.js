@@ -1,7 +1,7 @@
 var mongoosedb = require("../db/mongoosedb");
 var { generateToken } = require("../common/utils");
 var UserModelSchema = require("../db/schema/user.model");
-var { findUser } = require("../service/user.service");
+var { findUser, addUser } = require("../service/user.service");
 
 /**
  * Login User Controller
@@ -39,7 +39,15 @@ const loginUser = async (req, res) => {
  */
 const registerUser = async (req, res) => {
   try {
-    var user = await UserModelSchema.create(req.body.user);
+    var inputUser = {
+      userId: req.body.userName,
+      password: req.body.password,
+      email: req.body.email,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      contactNumber: req.body.contactNumber,
+    };
+    var user = await addUser(inputUser);
     return res.status(201).send(user);
   } catch (error) {
     console.log(error.message);
