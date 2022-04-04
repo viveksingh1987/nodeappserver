@@ -1,13 +1,20 @@
 const request = require("supertest");
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const userRouter = require("./user.routes");
+const { loginUser, registerUser } = require("../controller/user.controller");
+var { findUser, addUser } = require("../service/user.service");
+
 
 const app = new express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/user", userRouter);
 
+
+
+ 
 describe('Test User Login Routes', ()=>{
     
     it('Test user login failed with bad request', async () => {
@@ -33,8 +40,6 @@ describe('Test User Login Routes', ()=>{
         .send({userName: "vivek@gmail.com", password: "abc123"});
         expect(res.statusCode).toBe(201);
     });
-
-
 });
 
 

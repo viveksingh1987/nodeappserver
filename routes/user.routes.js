@@ -6,10 +6,10 @@ const { loginUser, registerUser } = require("../controller/user.controller");
 const { verifyToken } = require("../common/utils");
 
 // middleware that is specific to this router
-userRouter.use((req, res, next) => {
-  console.log("User Router | Time: ", new Date(Date.now()).toLocaleString());
-  next();
-});
+// userRouter.use((req, res, next) => {
+//   console.log("User Router | Time: ", new Date(Date.now()).toLocaleString());
+//   next();
+// });
 
 /**
  * Login User

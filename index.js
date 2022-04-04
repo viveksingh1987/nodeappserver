@@ -4,14 +4,14 @@ const bodyParser = require("body-parser");
 //Internal imports
 const config = require("./config");
 const globalRouter = require("./routes/routes");
-const MongooseDB = require("./db/mongoosedb");
+const { mongooseDBConnect } = require("./db/mongoosedb");
 
 
 // Define global variables
 const app = express();
 const port = config.app.port;
 app.use(bodyParser.json());
-MongooseDB();
+mongooseDBConnect();
 
 //*********************************************** */ Routes
 app.use("/", globalRouter);
